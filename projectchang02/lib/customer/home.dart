@@ -1,17 +1,74 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:projectchang02/customer/alert.dart';
+import 'package:projectchang02/customer/homefix.dart';
+import 'package:projectchang02/customer/post.dart';
+import 'package:projectchang02/customer/profile.dart';
+import 'package:projectchang02/customer/setting.dart';
+import 'package:projectchang02/tradman/hometrad.dart';
 
-class home112233 extends StatefulWidget {
-  const home112233({Key? key}) : super(key: key);
+class home extends StatefulWidget {
+  home({Key? key}) : super(key: key);
 
   @override
-  State<home112233> createState() => _home112233State();
+  State<home> createState() => _homeState();
 }
 
-class _home112233State extends State<home112233> {
+class _homeState extends State<home> {
+  int currenIndex = 0;
+  final screen = [
+    homefix(),
+    profile(),
+    post(),
+    alert(),
+    setting(),
+  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Container(
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('CHANG'),
+            TextButton.icon(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => homet()));
+                },
+                icon: Icon(Icons.campaign_rounded),
+                label: Text('Work')),
+          ],
+        )),
+        backgroundColor: Colors.red,
+      ),
+      body: screen[currenIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currenIndex,
+        onTap: (index) => setState((() => currenIndex = index)),
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'HOME',
+              backgroundColor: Colors.red),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'PROFILE',
+              backgroundColor: Colors.red),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.post_add),
+              label: '+',
+              backgroundColor: Colors.red),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_alert),
+              label: 'ALERT',
+              backgroundColor: Colors.red),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Setting',
+              backgroundColor: Colors.red),
+        ],
+      ),
+    );
   }
 }

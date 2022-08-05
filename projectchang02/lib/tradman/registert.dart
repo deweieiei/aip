@@ -1,29 +1,151 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:projectchang02/Login.dart';
 import 'package:projectchang02/ip.dart';
+import 'package:projectchang02/tradman/hometrad.dart';
 
-import 'package:rflutter_alert/rflutter_alert.dart';
-
-class Regster extends StatefulWidget {
-  const Regster({Key? key}) : super(key: key);
+class registert extends StatefulWidget {
+  registert({Key? key}) : super(key: key);
 
   @override
-  State<Regster> createState() => _RegsterState();
+  State<registert> createState() => _registertState();
 }
 
-class _RegsterState extends State<Regster> {
+class _registertState extends State<registert> {
+  final selection = [
+    Text('ช่างไฟ'),
+    Text('ช่างปะปา'),
+    Text('ช่างแอร์'),
+    Text('ช่างยนต์'),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: ListView(
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            color: Colors.blue[900],
+            child: Column(
+              children: [
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/water.jpg',
+                        height: 200,
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'REGISTER',
+                        style: TextStyle(color: Colors.white, fontSize: 40),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                            label: Text(
+                          'อันนี้จะใส่ dropdown selected',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            label: Text(
+                          'บัตรประชาชน',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            label: Text(
+                          'เบอร์โทรศัพท์',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            label: Text(
+                          'ที่อยู่ปัจจุบัน',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Text(
+                        'นโยบาย',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(30),
+                              color: Colors.white),
+                          child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => homet()));
+                              },
+                              child: Text(
+                                'สมัครเป็นช่าง',
+                                style: TextStyle(color: Colors.black),
+                              ))),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class registert2 extends StatefulWidget {
+  const registert2({Key? key}) : super(key: key);
+
+  @override
+  State<registert2> createState() => _registert2State();
+}
+
+class _registert2State extends State<registert2> {
   bool loginLoading = false;
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController fistnameController = TextEditingController();
-  TextEditingController lastnameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
-
   final formKey = GlobalKey<FormState>();
-
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController lastnameController = TextEditingController();
+  TextEditingController iduserController = TextEditingController();
+  TextEditingController dayController = TextEditingController();
+  TextEditingController tradesmanController = TextEditingController();
+  TextEditingController provinceController = TextEditingController();
   void validate() {
     if (formKey.currentState!.validate()) {
       setState(() {
@@ -39,67 +161,24 @@ class _RegsterState extends State<Regster> {
 
   void registerFunc() async {
     var url =
-        Uri.parse('http://$ip/apidew/apiserverless-dew/authen/signup.php');
+        Uri.parse('http://$ip/apidew/apiserverless-dew/authen/signupcgang.php');
     var res = await http.post(url, body: {
       'username': '${usernameController.text}',
-      'firstname': '${fistnameController.text}',
-      'lastname': '${lastnameController.text}',
-      'email': '${emailController.text}',
-      'password': '${passwordController.text}',
-      'layer': '2',
+      'firstname': '${lastnameController.text}',
+      'iduser': '${iduserController.text}',
+      'birthday': '${dayController.text}',
+      'tradesman': '${tradesmanController.text}',
+      'province': '${provinceController.text}',
     });
-    var resTojson = json.decode(res.body);
 
     if (res.statusCode == 200) {
       setState(() {
         loginLoading = false;
       });
-      if (resTojson['status'] == 'successful') {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const Login()),
-        );
-      } else if (resTojson['message'] == 'username is already') {
-        Alert(
-          context: context,
-          type: AlertType.warning,
-          title: "username",
-          desc: "มีผู้ใช้usernameนี้เเล้ว",
-          buttons: [
-            DialogButton(
-              child: Text(
-                "ตกลง",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () => Navigator.pop(context),
-              gradient: LinearGradient(colors: [
-                Color.fromARGB(255, 144, 4, 4),
-                Color.fromARGB(255, 199, 64, 52)
-              ]),
-            ),
-          ],
-        ).show();
-      } else if (resTojson['message'] == 'email is already') {
-        Alert(
-          context: context,
-          type: AlertType.warning,
-          title: "email",
-          desc: "มีผู้ใช้emailนี้เเล้ว",
-          buttons: [
-            DialogButton(
-              child: Text(
-                "FLAT",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () => Navigator.pop(context),
-              gradient: LinearGradient(colors: [
-                Color.fromARGB(255, 144, 4, 4),
-                Color.fromARGB(255, 199, 64, 52)
-              ]),
-            ),
-          ],
-        ).show();
-      }
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => homet()),
+      );
     }
   }
 
@@ -115,8 +194,8 @@ class _RegsterState extends State<Regster> {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image:
-                        AssetImage('assets/background/background_Regster3.png'),
+                    image: AssetImage(
+                        'assets/background/background_Regster44.png'),
                     fit: BoxFit.cover),
               ),
               child: Column(
@@ -133,9 +212,9 @@ class _RegsterState extends State<Regster> {
                               children: [
                                 Image.asset('assets/images/Logo.jpg.png'),
                                 Text(
-                                  'Regster',
+                                  'สมัครเป็นช่าง',
                                   style: TextStyle(
-                                      fontSize: 40,
+                                      fontSize: 35,
                                       color:
                                           Color.fromARGB(255, 255, 255, 255)),
                                 ),
@@ -160,34 +239,8 @@ class _RegsterState extends State<Regster> {
                                   color: Color.fromARGB(255, 233, 232, 232),
                                   borderRadius: BorderRadius.circular(30)),
                               child: TextFormField(
-                                // obscureText: true,
+                                textInputAction: TextInputAction.next,
                                 controller: usernameController,
-                                textInputAction: TextInputAction.next,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "กรุณากรอก ชื่อผู้ใช้ ของท่าน";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                decoration: InputDecoration(
-                                    icon: (Image.asset(
-                                      'assets/Icon/icon_regster/1.png',
-                                      height: 30,
-                                    )),
-                                    hintText: "UserName"),
-                                cursorHeight: 30,
-                              )),
-                          Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                          Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 10),
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 233, 232, 232),
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: TextFormField(
-                                textInputAction: TextInputAction.next,
-                                controller: fistnameController,
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return "กรุณากรอก ชื้อผู้ใช้ ของท่าน";
@@ -200,7 +253,7 @@ class _RegsterState extends State<Regster> {
                                       'assets/Icon/icon_regster/2.png',
                                       height: 30,
                                     )),
-                                    hintText: "firstName"),
+                                    hintText: "ชื่อ"),
                                 cursorHeight: 30,
                               )),
                           Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
@@ -225,7 +278,7 @@ class _RegsterState extends State<Regster> {
                                       'assets/Icon/icon_regster/2.png',
                                       height: 30,
                                     )),
-                                    hintText: "LastName"),
+                                    hintText: "นามสกุล"),
                                 cursorHeight: 30,
                               )),
                           Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
@@ -237,28 +290,20 @@ class _RegsterState extends State<Regster> {
                                   borderRadius: BorderRadius.circular(30)),
                               child: TextFormField(
                                 textInputAction: TextInputAction.next,
-                                controller: emailController,
-                                keyboardType: TextInputType.emailAddress,
+                                controller: iduserController,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return "กรุณากรอก อีเมล ของท่าน";
+                                    return "กรุณากรอก บัตรประชาชน";
                                   } else {
-                                    bool emailValid = RegExp(
-                                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                        .hasMatch(emailController.text);
-
-                                    if (emailValid == false) {
-                                      return "ท่านกรอกอีเมลไม่ถูกต้อง";
-                                    }
                                     return null;
                                   }
                                 },
                                 decoration: InputDecoration(
                                     icon: (Image.asset(
-                                      'assets/Icon/icon_regster/3.png',
+                                      'assets/Icon/icon_regster/2.png',
                                       height: 30,
                                     )),
-                                    hintText: "E-Mail"),
+                                    hintText: "บัตรประชาชน"),
                                 cursorHeight: 30,
                               )),
                           Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
@@ -269,22 +314,21 @@ class _RegsterState extends State<Regster> {
                                   color: Color.fromARGB(255, 233, 232, 232),
                                   borderRadius: BorderRadius.circular(30)),
                               child: TextFormField(
-                                obscureText: true,
                                 textInputAction: TextInputAction.next,
-                                controller: passwordController,
+                                controller: dayController,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return "กรุณากรอก Password  ของท่าน";
+                                    return "กรุณากรอก วันเกิด";
                                   } else {
                                     return null;
                                   }
                                 },
                                 decoration: InputDecoration(
                                     icon: (Image.asset(
-                                      'assets/Icon/key.png',
-                                      height: 20,
+                                      'assets/Icon/icon_regster/2.png',
+                                      height: 30,
                                     )),
-                                    hintText: "Password"),
+                                    hintText: "วันเกิด 01/01/2000"),
                                 cursorHeight: 30,
                               )),
                           Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
@@ -295,25 +339,46 @@ class _RegsterState extends State<Regster> {
                                   color: Color.fromARGB(255, 233, 232, 232),
                                   borderRadius: BorderRadius.circular(30)),
                               child: TextFormField(
-                                obscureText: true,
                                 textInputAction: TextInputAction.next,
-                                controller: confirmPasswordController,
+                                controller: tradesmanController,
                                 validator: (value) {
-                                  if (passwordController.text !=
-                                      confirmPasswordController.text) {
-                                    return "รหัสผ่านไม่ตรงกัน";
-                                  } else if (value!.isEmpty) {
-                                    return "กรุณากรอก ยืนยันรหัสผ่าน";
+                                  if (value!.isEmpty) {
+                                    return "กรุณากรอก ประเภทช่าง";
                                   } else {
                                     return null;
                                   }
                                 },
                                 decoration: InputDecoration(
                                     icon: (Image.asset(
-                                      'assets/Icon/key.png',
-                                      height: 20,
+                                      'assets/Icon/icon_regster/2.png',
+                                      height: 30,
                                     )),
-                                    hintText: "ConfirmPassword"),
+                                    hintText: "ประเภทช่าง"),
+                                cursorHeight: 30,
+                              )),
+                          Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 25, vertical: 10),
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 233, 232, 232),
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: TextFormField(
+                                textInputAction: TextInputAction.next,
+                                controller: provinceController,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "กรุณากรอก จังหวัด";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                decoration: InputDecoration(
+                                    icon: (Image.asset(
+                                      'assets/Icon/icon_regster/2.png',
+                                      height: 30,
+                                    )),
+                                    hintText: "จังหวัด"),
                                 cursorHeight: 30,
                               )),
                         ],
@@ -335,48 +400,21 @@ class _RegsterState extends State<Regster> {
                         ),
                   Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                   Container(
-                    child: GestureDetector(
-                        child: Text(
-                          'Login',
-                          style: TextStyle(color: Colors.black38, fontSize: 20),
-                        ),
-                        onTap: () {
+                    child: ElevatedButton.icon(
+                        icon: Icon(Icons.login),
+                        label: Text('Testข้ามขั้นตอนไป'),
+                        onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => const Login()),
+                            MaterialPageRoute(builder: (context) => homet()),
                           );
                         }),
-                  ),
-                  // OutlinedButton(
-                  //     onPressed: () {},
-                  //     child: Container(
-                  //         width: 20,
-                  //         color: Colors.black,
-                  //         child: Icon(Icons.abc_outlined)))
+                  )
                 ],
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class t extends StatefulWidget {
-  const t({Key? key}) : super(key: key);
-
-  @override
-  State<t> createState() => _tState();
-}
-
-class _tState extends State<t> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
       ),
     );
   }
