@@ -31,3 +31,25 @@ class Transactiont {
       required this.phonet,
       required this.detailt});
 }
+
+class User {
+  String id;
+  String username;
+  String firstname;
+  String lastname;
+  String email;
+  String password;
+  String ayer;
+  String datetime;
+
+  User({
+    required this.id,
+    required this.username,
+    required this.firstname,
+    required this.lastname,
+    required this.email,
+    required this.password,
+    required this.ayer,
+    required this.datetime,
+  });
+}

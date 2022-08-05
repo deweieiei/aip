@@ -10,6 +10,8 @@ import 'package:http/http.dart' as http;
 import 'package:projectchang02/customer/home.dart';
 import 'package:projectchang02/ip.dart';
 import 'package:projectchang02/login/Regster.dart';
+import 'package:projectchang02/transaction_consumer_provider/transaction_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Login extends StatefulWidget {
@@ -46,13 +48,22 @@ class _LoginState extends State<Login> {
       'username': '${usernameController.text}',
       'password': '${passwordController.text}',
     });
+
     var resTojson = json.decode(res.body);
+
     if (res.statusCode == 200) {
       setState(() {
         loginLoading = true;
       });
       if (resTojson['status'] == 'get successfull') {
         loginLoading = false;
+        context.read<UserProvider>().id = resTojson['item']['id'];
+        context.read<UserProvider>().username = resTojson['item']['username'];
+        context.read<UserProvider>().firstname = resTojson['item']['firstname'];
+        context.read<UserProvider>().lastname = resTojson['item']['lastname'];
+        context.read<UserProvider>().email = resTojson['item']['email'];
+        context.read<UserProvider>().ayer = resTojson['item']['ayer'];
+        context.read<UserProvider>().datetime = resTojson['item']['datetime'];
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => home()),

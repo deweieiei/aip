@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projectchang02/customer/profilefix.dart';
+import 'package:projectchang02/transaction_consumer_provider/transaction_provider.dart'; //เเอดทุกไฟล์
+import 'package:provider/provider.dart';
 
 class profile extends StatefulWidget {
   profile({Key? key}) : super(key: key);
@@ -30,7 +32,7 @@ class _profileState extends State<profile> {
           Container(
             padding: EdgeInsets.all(15),
             child: Column(children: [
-              Text('DPP'),
+              Text('${context.read<UserProvider>().username} '),
             ]),
           ),
           Container(
@@ -52,7 +54,9 @@ class _profileState extends State<profile> {
                               Icons.person,
                               color: Colors.black,
                             ),
-                            label: Text('DPP DPP')),
+                            label: Text(
+                                '${context.read<UserProvider>().firstname} ' +
+                                    ' ${context.read<UserProvider>().lastname}')),
                         TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -89,7 +93,7 @@ class _profileState extends State<profile> {
                           Icons.email_outlined,
                           color: Colors.black,
                         ),
-                        label: Text('Dpp123@gmail.com'))
+                        label: Text('${context.read<UserProvider>().email} '))
                   ]),
                 ),
                 Container(

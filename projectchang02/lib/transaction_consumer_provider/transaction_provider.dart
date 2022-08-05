@@ -22,3 +22,13 @@ class TransactionProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+class UserProvider with ChangeNotifier {
+  String? id;
+  String? username;
+  String? firstname;
+  String? lastname;
+  String? email;
+  String? ayer;
+  String? datetime;
+}
