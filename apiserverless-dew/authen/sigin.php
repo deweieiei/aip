@@ -15,9 +15,8 @@ header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Accept");
 
      if($result->num_rows > 0 ){
       while ($row = mysqli_fetch_array($result)){
-       session_start();
-    //    $_SESSION['NameUsre'] = "$user_username";
-    //    $_SESSION['password'] = "$user_password_in";
+     
+    
        
         $json = array("status" => "get successfull", "message" => "successfull" ,"item" => $row, );
         
