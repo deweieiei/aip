@@ -20,90 +20,79 @@ class _homefixState extends State<homefix> {
         Container(
           child: Column(
             children: [
-              Image.asset(
-                'assets/jet21.png',
-                width: 200,
-                height: 110,
-              ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Container(
                   child: Row(
                     children: [
-                      Container(
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => sfire()));
-                                },
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => sfire()));
+                        },
+                        child: Container(
+                          child: Column(
+                            children: [
+                              CircleAvatar(
                                 child: Text('ช่างไฟ'),
-                              ),
-                              radius: 50,
-                              backgroundColor: Colors.pink[50],
-                            )
-                          ],
+                                radius: 50,
+                                backgroundColor: Colors.pink[50],
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                      Container(
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => swater()));
-                                },
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => swater()));
+                        },
+                        child: Container(
+                          child: Column(
+                            children: [
+                              CircleAvatar(
                                 child: Text('ช่างปะปา'),
-                              ),
-                              radius: 50,
-                              backgroundColor: Colors.pink[50],
-                            )
-                          ],
+                                radius: 50,
+                                backgroundColor: Colors.pink[50],
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                      Container(
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => sair()));
-                                },
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => sair()));
+                        },
+                        child: Container(
+                          child: Column(
+                            children: [
+                              CircleAvatar(
                                 child: Text('ช่างแอร์'),
-                              ),
-                              radius: 50,
-                              backgroundColor: Colors.pink[50],
-                            )
-                          ],
+                                radius: 50,
+                                backgroundColor: Colors.pink[50],
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                      Container(
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => scar()));
-                                },
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => scar()));
+                        },
+                        child: Container(
+                          child: Column(
+                            children: [
+                              CircleAvatar(
                                 child: Text('ช่างยนต์'),
+                                radius: 50,
+                                backgroundColor: Colors.pink[50],
                               ),
-                              radius: 50,
-                              backgroundColor: Colors.pink[50],
-                            )
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],

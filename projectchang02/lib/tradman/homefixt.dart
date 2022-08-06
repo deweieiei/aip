@@ -17,22 +17,6 @@ class homefixt extends StatefulWidget {
 }
 
 class _alerttState extends State<homefixt> {
-  List userList = [];
-  get_user() async {
-    String? id;
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      id = preferences.getString('id');
-    });
-
-    final response = await http
-        .get(Uri.parse("http://$ip/apidew/apiserverless-dew/authen/test.php"));
-    var data = json.decode(response.body);
-    setState(() {
-      userList = data;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

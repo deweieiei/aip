@@ -17,15 +17,15 @@ class _homeState extends State<home> {
   int currenIndex = 0;
   final screen = [
     homefix(),
-    profile(),
     post(),
+    profile(),
     alert(),
-    setting(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Container(
             child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,20 +52,16 @@ class _homeState extends State<home> {
               label: 'HOME',
               backgroundColor: Colors.red),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'PROFILE',
-              backgroundColor: Colors.red),
-          BottomNavigationBarItem(
               icon: Icon(Icons.post_add),
               label: '+',
               backgroundColor: Colors.red),
           BottomNavigationBarItem(
-              icon: Icon(Icons.add_alert),
-              label: 'ALERT',
+              icon: Icon(Icons.person),
+              label: 'PROFILE',
               backgroundColor: Colors.red),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Setting',
+              icon: Icon(Icons.add_alert),
+              label: 'ALERT',
               backgroundColor: Colors.red),
         ],
       ),

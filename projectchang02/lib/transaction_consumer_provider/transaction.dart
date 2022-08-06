@@ -54,17 +54,17 @@ class User {
   });
 }
 
-// class Post2 {
-//   String text;
-//   String time;
-//   String am;
-//   String number;
-//   String line;
-//   Post2({
-//     required this.text,
-//     required this.time,
-//     required this.am,
-//     required this.number,
-//     required this.line,
-//   });
-// }
+class Post2 {
+  String text;
+  String time;
+  String am;
+  String number;
+  String line;
+  Post2({
+    required this.text,
+    required this.time,
+    required this.am,
+    required this.number,
+    required this.line,
+  });
+}
