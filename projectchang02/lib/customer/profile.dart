@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projectchang02/customer/profilefix.dart';
-import 'package:projectchang02/transaction_consumer_provider/transaction_provider.dart'; //เเอดทุกไฟล์
+import 'package:projectchang02/transaction_consumer_provider/transaction_provider.dart';
 import 'package:provider/provider.dart';
 
 class profile extends StatefulWidget {

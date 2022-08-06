@@ -146,37 +146,39 @@ class _alerttState extends State<homefixt> {
                                   children: [
                                     Container(
                                         alignment: Alignment.topLeft,
-                                        child: Text(
-                                          "รายละเอียด  ",
-                                        )),
+                                        child: Text("รายละเอียด  ")),
                                     Container(
                                         alignment: Alignment.topLeft,
-                                        child: Text(" " + data.title)),
+                                        child: Text(
+                                            ' ${context.read<Post>().text}')),
                                     Container(
                                         alignment: Alignment.topLeft,
                                         child: Text("ติดต่อเบอร์  ")),
                                     Container(
                                         alignment: Alignment.topLeft,
-                                        child: Text(" " + data.phone)),
+                                        child: Text(
+                                            ' ${context.read<Post>().number}')),
                                     Container(
                                         alignment: Alignment.topLeft,
                                         child: Text("ติดต่อLine  ")),
                                     Container(
                                         alignment: Alignment.topLeft,
-                                        child: Text(" " + data.line)),
+                                        child: Text(
+                                            ' ${context.read<Post>().line}')),
                                     Container(
                                         alignment: Alignment.topLeft,
                                         child: Text("ราคา  ")),
                                     Container(
                                         alignment: Alignment.topLeft,
-                                        child:
-                                            Text(" " + data.amount.toString())),
+                                        child: Text(
+                                            ' ${context.read<Post>().am}')),
                                     Container(
                                         alignment: Alignment.topLeft,
                                         child: Text("เวลาทำงาน  ")),
                                     Container(
                                         alignment: Alignment.topLeft,
-                                        child: Text(" " + data.date)),
+                                        child: Text(
+                                            ' ${context.read<Post>().time}')),
                                   ],
                                 ),
                               ),

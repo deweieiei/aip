@@ -32,3 +32,11 @@ class UserProvider with ChangeNotifier {
   String? ayer;
   String? datetime;
 }
+
+class Post with ChangeNotifier {
+  String? text;
+  String? time;
+  String? am;
+  String? number;
+  String? line;
+}

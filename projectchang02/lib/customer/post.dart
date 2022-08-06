@@ -34,6 +34,14 @@ class _postState extends State<post> {
       'phone': '${telephonControllor.text}',
       'line': '${informationControllor.text}'
     });
+
+    var resTojson = json.decode(postcustomer.body);
+
+    context.read<Post>().text = resTojson['item']['infor'];
+    context.read<Post>().time = resTojson['item']['time'];
+    context.read<Post>().am = resTojson['item']['count'];
+    context.read<Post>().number = resTojson['item']['phone'];
+    context.read<Post>().line = resTojson['item']['line'];
   }
 
   @override
@@ -46,7 +54,7 @@ class _postState extends State<post> {
               backgroundColor: Color.fromARGB(255, 188, 179, 179),
               radius: 50,
             ),
-            Text('  เรียกจาก DATABASE'),
+            Text('${context.read<UserProvider>().firstname}'),
           ],
         ),
       ),

@@ -24,6 +24,11 @@ class MyApp extends StatelessWidget {
           create: (context) {
             return UserProvider();
           },
+        ),
+        ChangeNotifierProvider(
+          create: (context) {
+            return Post();
+          },
         )
       ],
       child: MaterialApp(
