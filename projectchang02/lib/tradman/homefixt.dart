@@ -17,6 +17,7 @@ class homefixt extends StatefulWidget {
 }
 
 class _alerttState extends State<homefixt> {
+  Future<void> refresh() async {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,93 +87,102 @@ class _alerttState extends State<homefixt> {
           height: 500,
           child: Consumer(
             builder: (context, TransactionProvider provider, child) {
-              return ListView.builder(
-                itemCount: provider.transactions.length,
-                itemBuilder: (context, int index) {
-                  Transaction data = provider.transactions[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 233, 232, 232),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                          child: Column(
-                            children: [
-                              Container(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 100,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                          color: Color.fromARGB(
-                                              255, 177, 170, 170),
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
-                                      child: FittedBox(
-                                        child: Text("รูป"
-                                            // data.amount.toString(),
-                                            ),
+              return RefreshIndicator(
+                triggerMode: RefreshIndicatorTriggerMode.anywhere,
+                edgeOffset: 0,
+                displacement: 0,
+                strokeWidth: 1,
+                color: Colors.white,
+                backgroundColor: Colors.white60,
+                onRefresh: refresh,
+                child: ListView.builder(
+                  itemCount: provider.transactions.length,
+                  itemBuilder: (context, int index) {
+                    Transaction data = provider.transactions[index];
+                    return Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 233, 232, 232),
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 100,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                            color: Color.fromARGB(
+                                                255, 177, 170, 170),
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
+                                        child: FittedBox(
+                                          child: Text("รูป"
+                                              // data.amount.toString(),
+                                              ),
+                                        ),
                                       ),
-                                    ),
-                                    Container(
-                                      height: 20,
-                                      width: 20,
-                                    )
-                                  ],
+                                      Container(
+                                        height: 20,
+                                        width: 20,
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                child: Column(
-                                  children: [
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text("รายละเอียด  ")),
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text(
-                                            ' ${context.read<Post>().text}')),
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text("ติดต่อเบอร์  ")),
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text(
-                                            ' ${context.read<Post>().number}')),
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text("ติดต่อLine  ")),
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text(
-                                            ' ${context.read<Post>().line}')),
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text("ราคา  ")),
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text(
-                                            ' ${context.read<Post>().am}')),
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text("เวลาทำงาน  ")),
-                                    Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Text(
-                                            ' ${context.read<Post>().time}')),
-                                  ],
+                                Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text("รายละเอียด  ")),
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                              ' ${context.read<Post>().text}')),
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text("ติดต่อเบอร์  ")),
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                              ' ${context.read<Post>().number}')),
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text("ติดต่อLine  ")),
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                              ' ${context.read<Post>().line}')),
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text("ราคา  ")),
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                              ' ${context.read<Post>().am}')),
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text("เวลาทำงาน  ")),
+                                      Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                              ' ${context.read<Post>().time}')),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               );
             },
           ),
