@@ -10,11 +10,6 @@ header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Accept");
       $salt = 'fluttercerateproject';
       $user_password = hash_hmac ('md5',$user_password_in,$salt);
 
-
-    
-
-
-
       $sql = "SELECT * FROM datauser WHERE username ='".$user_username."' AND password = '".$user_password."'";
       $result = $connect->query($sql);
 
