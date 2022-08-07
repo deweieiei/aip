@@ -21,6 +21,12 @@ class TransactionProvider with ChangeNotifier {
     /* แจ้งเตือน Consumer */
     notifyListeners();
   }
+
+  List<Usertransaction> usert = [];
+  void usertransaction(Usertransaction statement) {
+    usert.add(statement);
+    notifyListeners();
+  }
 }
 
 class UserProvider with ChangeNotifier {
