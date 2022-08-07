@@ -1,0 +1,40 @@
+////////Up////
+
+git add .
+git commit -m "Up" 
+git push origin main
+
+
+
+///////////down//////
+
+git pull 
+
+
+UPDATE `datauser` SET `numphon` = '0982934303' WHERE `datauser`.`id` = 20;
+
+
+
+void update() async {
+    var url =
+        Uri.parse('http://$ip/apidew/apiserverless-dew/authen/update.php');
+    var res = await http.post(url, body: {
+      'id': '${context.read<UserProvider>().id}',
+      'line': '${line.text}',
+      'numphon': '${numphon.text}',
+      'facebook': '${facebook.text}',
+      'address': '${address.text}',
+    });
+    var resTojson = json.decode(res.body);
+    if (resTojson['status'] == 'ok') {
+      context.read<UserProvider>().line = resTojson['item']['line'];
+      context.read<UserProvider>().numphon = resTojson['item']['numphon'];
+      context.read<UserProvider>().facebook = resTojson['item']['facebook'];
+      context.read<UserProvider>().address = resTojson['item']['address'];
+
+      print(resTojson);
+    }
+  }
+
+
+
