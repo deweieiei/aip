@@ -4,7 +4,7 @@ import 'package:projectchang02/customer/homefix.dart';
 import 'package:projectchang02/customer/post.dart';
 import 'package:projectchang02/customer/profile.dart';
 import 'package:projectchang02/customer/setting.dart';
-import 'package:projectchang02/tradman/hometrad.dart'; ////55
+import 'package:projectchang02/tradman/hometrad.dart'; ////555
 
 class home extends StatefulWidget {
   home({Key? key}) : super(key: key);
