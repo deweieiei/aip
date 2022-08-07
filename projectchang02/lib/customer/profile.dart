@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:projectchang02/customer/profilefix.dart';
 import 'package:projectchang02/transaction_consumer_provider/transaction_provider.dart';
@@ -11,7 +13,16 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
-  Future<void> refresh() async {}
+  Future<void> refresh() async {
+    // var resTojson = json.decode(res.body);
+    // setState(() {
+    //   context.read<UserProvider>().line = resTojson['item']['line'];
+    //   context.read<UserProvider>().numphon = resTojson['item']['numphon'];
+    //   context.read<UserProvider>().facebook = resTojson['item']['facebook'];
+    //   context.read<UserProvider>().address = resTojson['item']['address'];
+    // });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

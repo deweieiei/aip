@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:projectchang02/customer/home.dart';
 import 'package:projectchang02/customer/profile.dart';
 import 'package:projectchang02/ip.dart';
 import 'package:projectchang02/transaction_consumer_provider/transaction_provider.dart';
@@ -30,15 +31,12 @@ class _profilefixState extends State<profilefix> {
       'facebook': '${facebook.text}',
       'address': '${address.text}',
     });
-    Navigator.pop(context);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => home()),
+    );
     var resTojson = json.decode(res.body);
-
-    context.read<UserProvider>().line = resTojson['item']['line'];
-    context.read<UserProvider>().numphon = resTojson['item']['numphon'];
-    context.read<UserProvider>().facebook = resTojson['item']['facebook'];
-    context.read<UserProvider>().address = resTojson['item']['address'];
-
-    print(resTojson);
   }
 
   @override

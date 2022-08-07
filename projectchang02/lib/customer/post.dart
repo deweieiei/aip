@@ -28,6 +28,7 @@ class _postState extends State<post> {
   void post() async {
     var url = Uri.parse('http://$ip/apidew/apiserverless-dew/authen/post.php');
     var postcustomer = await http.post(url, body: {
+      'id': '${context.read<UserProvider>().id}',
       'infor': '${titleControllor.text}',
       'time': '${dateControllor.text}',
       'amount': '${amountControllor.text}',
