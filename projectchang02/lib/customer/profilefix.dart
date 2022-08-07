@@ -1,4 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:projectchang02/customer/profile.dart';
+import 'package:projectchang02/ip.dart';
+import 'package:projectchang02/transaction_consumer_provider/transaction_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class profilefix extends StatefulWidget {
   profilefix({Key? key}) : super(key: key);
@@ -8,16 +15,44 @@ class profilefix extends StatefulWidget {
 }
 
 class _profilefixState extends State<profilefix> {
+  TextEditingController line = TextEditingController();
+  TextEditingController numphon = TextEditingController();
+  TextEditingController facebook = TextEditingController();
+  TextEditingController address = TextEditingController();
+
+  void update() async {
+    var url =
+        Uri.parse('http://$ip/apidew/apiserverless-dew/authen/update.php');
+    var res = await http.post(url, body: {
+      'id': '${context.read<UserProvider>().id}',
+      'line': '${line.text}',
+      'numphon': '${numphon.text}',
+      'facebook': '${facebook.text}',
+      'address': '${address.text}',
+    });
+    Navigator.pop(context);
+    var resTojson = json.decode(res.body);
+
+    context.read<UserProvider>().line = resTojson['item']['line'];
+    context.read<UserProvider>().numphon = resTojson['item']['numphon'];
+    context.read<UserProvider>().facebook = resTojson['item']['facebook'];
+    context.read<UserProvider>().address = resTojson['item']['address'];
+
+    print(resTojson);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: Colors.red,
+      // ),
       backgroundColor: Colors.grey[300],
       body: ListView(
         children: [
           Container(
+            height: 300,
             padding: EdgeInsets.all(10),
             color: Colors.red[900],
             child: Column(
@@ -32,7 +67,7 @@ class _profilefixState extends State<profilefix> {
           Container(
             padding: EdgeInsets.all(15),
             child: Column(children: [
-              Text('DPP'),
+              Text('${context.read<UserProvider>().username} '),
             ]),
           ),
           Container(
@@ -44,22 +79,48 @@ class _profilefixState extends State<profilefix> {
                 color: Colors.white),
             child: Column(
               children: [
-                TextFormField(
-                  decoration: InputDecoration(icon: Icon(Icons.person)),
+                Container(
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Icon(Icons.person),
+                      ),
+                      Text('  ${context.read<UserProvider>().firstname} ' +
+                          ' ${context.read<UserProvider>().lastname}'),
+                    ],
+                  ),
                 ),
+                Padding(padding: EdgeInsets.all(7.0)),
+                Container(
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Icon(Icons.email_outlined),
+                      ),
+                      Container(
+                        child: Text('  ${context.read<UserProvider>().email} '),
+                      ),
+                    ],
+                  ),
+                ),
+                TextFormField(
+                    controller: line,
+                    decoration: InputDecoration(
+                        icon: Image.asset(
+                      "assets/Icon/line.png",
+                      height: 25,
+                      width: 25,
+                    ))),
                 TextFormField(
                   decoration: InputDecoration(icon: Icon(Icons.phone)),
+                  controller: numphon,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(icon: Icon(Icons.email_outlined)),
-                ),
-                TextFormField(
+                  controller: facebook,
                   decoration: InputDecoration(icon: Icon(Icons.facebook)),
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Line : '),
-                ),
-                TextFormField(
+                  controller: address,
                   decoration: InputDecoration(icon: Icon(Icons.location_on)),
                 ),
               ],
@@ -78,7 +139,7 @@ class _profilefixState extends State<profilefix> {
                           color: Colors.red[50]),
                       child: TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            update();
                           },
                           child: Text('บันทึกข้อมูล')),
                     ),

@@ -23,79 +23,88 @@ class _homefixState extends State<homefix> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Container(
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => sfire()));
-                        },
-                        child: Container(
-                          child: Column(
-                            children: [
-                              CircleAvatar(
-                                child: Text('ช่างไฟ'),
-                                radius: 50,
-                                backgroundColor: Colors.pink[50],
-                              )
-                            ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => sfire()));
+                          },
+                          child: Container(
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  child: Text('ช่างไฟ'),
+                                  radius: 50,
+                                  backgroundColor: Colors.pink[50],
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => swater()));
-                        },
-                        child: Container(
-                          child: Column(
-                            children: [
-                              CircleAvatar(
-                                child: Text('ช่างปะปา'),
-                                radius: 50,
-                                backgroundColor: Colors.pink[50],
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => swater()));
+                          },
+                          child: Container(
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  child: Text('ช่างปะปา'),
+                                  radius: 50,
+                                  backgroundColor: Colors.pink[50],
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => sair()));
-                        },
-                        child: Container(
-                          child: Column(
-                            children: [
-                              CircleAvatar(
-                                child: Text('ช่างแอร์'),
-                                radius: 50,
-                                backgroundColor: Colors.pink[50],
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => sair()));
+                          },
+                          child: Container(
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  child: Text('ช่างแอร์'),
+                                  radius: 50,
+                                  backgroundColor: Colors.pink[50],
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => scar()));
-                        },
-                        child: Container(
-                          child: Column(
-                            children: [
-                              CircleAvatar(
-                                child: Text('ช่างยนต์'),
-                                radius: 50,
-                                backgroundColor: Colors.pink[50],
-                              ),
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => scar()));
+                          },
+                          child: Container(
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  child: Text('ช่างยนต์'),
+                                  radius: 50,
+                                  backgroundColor: Colors.pink[50],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

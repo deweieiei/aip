@@ -64,6 +64,10 @@ class _LoginState extends State<Login> {
         context.read<UserProvider>().email = resTojson['item']['email'];
         context.read<UserProvider>().ayer = resTojson['item']['ayer'];
         context.read<UserProvider>().datetime = resTojson['item']['datetime'];
+        context.read<UserProvider>().line = resTojson['item']['line'];
+        context.read<UserProvider>().numphon = resTojson['item']['numphon'];
+        context.read<UserProvider>().facebook = resTojson['item']['facebook'];
+        context.read<UserProvider>().address = resTojson['item']['address'];
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => home()),

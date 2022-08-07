@@ -82,7 +82,7 @@ class _profileState extends State<profile> {
                           Icons.phone,
                           color: Colors.black,
                         ),
-                        label: Text('061640XXXX'))
+                        label: Text('${context.read<UserProvider>().numphon} '))
                   ]),
                 ),
                 Container(
@@ -104,14 +104,18 @@ class _profileState extends State<profile> {
                           Icons.facebook,
                           color: Colors.black,
                         ),
-                        label: Text('DDPP'))
+                        label:
+                            Text('${context.read<UserProvider>().facebook} '))
                   ]),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                   child: Row(children: [
-                    Text('Line : '),
-                    TextButton(onPressed: () {}, child: Text('Dpp_123'))
+                    Text('Line  '),
+                    TextButton(
+                        onPressed: () {},
+                        child:
+                            Text('${context.read<UserProvider>().facebook} '))
                   ]),
                 ),
                 Container(
@@ -122,7 +126,7 @@ class _profileState extends State<profile> {
                           Icons.location_on,
                           color: Colors.black,
                         ),
-                        label: Text('ลาดพร้าว 107'))
+                        label: Text('${context.read<UserProvider>().address} '))
                   ]),
                 ),
               ],

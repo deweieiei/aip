@@ -31,6 +31,10 @@ class UserProvider with ChangeNotifier {
   String? email;
   String? ayer;
   String? datetime;
+  String? line;
+  String? numphon;
+  String? facebook;
+  String? address;
 }
 
 class Post with ChangeNotifier {
