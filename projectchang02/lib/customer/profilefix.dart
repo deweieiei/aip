@@ -31,12 +31,7 @@ class _profilefixState extends State<profilefix> {
       'facebook': '${facebook.text}',
       'address': '${address.text}',
     });
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => home()),
-    );
-    var resTojson = json.decode(res.body);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => home()));
   }
 
   @override
@@ -102,6 +97,7 @@ class _profilefixState extends State<profilefix> {
                   ),
                 ),
                 TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: line,
                     decoration: InputDecoration(
                         icon: Image.asset(
@@ -110,14 +106,17 @@ class _profilefixState extends State<profilefix> {
                       width: 25,
                     ))),
                 TextFormField(
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(icon: Icon(Icons.phone)),
                   controller: numphon,
                 ),
                 TextFormField(
+                  textInputAction: TextInputAction.next,
                   controller: facebook,
                   decoration: InputDecoration(icon: Icon(Icons.facebook)),
                 ),
                 TextFormField(
+                  textInputAction: TextInputAction.next,
                   controller: address,
                   decoration: InputDecoration(icon: Icon(Icons.location_on)),
                 ),

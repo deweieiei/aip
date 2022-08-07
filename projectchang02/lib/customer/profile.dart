@@ -1,9 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:projectchang02/customer/home.dart';
 import 'package:projectchang02/customer/profilefix.dart';
+import 'package:projectchang02/ip.dart';
 import 'package:projectchang02/transaction_consumer_provider/transaction_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class profile extends StatefulWidget {
   profile({Key? key}) : super(key: key);
@@ -14,13 +17,31 @@ class profile extends StatefulWidget {
 
 class _profileState extends State<profile> {
   Future<void> refresh() async {
-    // var resTojson = json.decode(res.body);
-    // setState(() {
-    //   context.read<UserProvider>().line = resTojson['item']['line'];
-    //   context.read<UserProvider>().numphon = resTojson['item']['numphon'];
-    //   context.read<UserProvider>().facebook = resTojson['item']['facebook'];
-    //   context.read<UserProvider>().address = resTojson['item']['address'];
-    // });
+    var url = Uri.parse(
+        'http://$ip/apidew/apiserverless-dew/authen/refreshprofile.php');
+    var res = await http.post(url, body: {
+      'id': '${context.read<UserProvider>().id}',
+    });
+    var resTojson = json.decode(res.body);
+    setState(() {
+      context.read<UserProvider>().id = resTojson['item']['id'];
+      context.read<UserProvider>().username = resTojson['item']['username'];
+      context.read<UserProvider>().firstname = resTojson['item']['firstname'];
+      context.read<UserProvider>().lastname = resTojson['item']['lastname'];
+      context.read<UserProvider>().email = resTojson['item']['email'];
+      context.read<UserProvider>().ayer = resTojson['item']['ayer'];
+      context.read<UserProvider>().datetime = resTojson['item']['datetime'];
+      context.read<UserProvider>().line = resTojson['item']['line'];
+      context.read<UserProvider>().numphon = resTojson['item']['numphon'];
+      context.read<UserProvider>().facebook = resTojson['item']['facebook'];
+      context.read<UserProvider>().address = resTojson['item']['address'];
+    });
+  }
+
+  @override
+  void initState() {
+    refresh();
+    super.initState();
   }
 
   @override
@@ -135,8 +156,7 @@ class _profileState extends State<profile> {
                       Text('Line  '),
                       TextButton(
                           onPressed: () {},
-                          child:
-                              Text('${context.read<UserProvider>().facebook} '))
+                          child: Text('${context.read<UserProvider>().line} '))
                     ]),
                   ),
                   Container(
