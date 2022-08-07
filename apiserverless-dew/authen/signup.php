@@ -47,6 +47,8 @@
 
 
 
-
+      //  $response = $connect->query(" INSERT INTO datauser (username,firstname,) 
+      //  VALUES  ('".."')");
+ 
  
 ?>
